@@ -16,7 +16,9 @@ const TrackSchema = new mongoose.Schema({
 const Track = new mongoose.model('Track', TrackSchema)
 
 const save = (track) => new Track(track).save()
+const retrieve = (artist, name) => Track.findOne({ artist, name })
 
 module.exports = {
-  save
+  save,
+  retrieve
 }
