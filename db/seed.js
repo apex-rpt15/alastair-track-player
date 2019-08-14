@@ -1,5 +1,6 @@
 const db = require('./index.js')
 const Promise = require('bluebird')
+const { sampleNames } = require('./config.js')
 
 const seedRandom = function (numRecords) {
   const before = new Date()
@@ -10,10 +11,10 @@ const seedRandom = function (numRecords) {
 
   // Example product must be included, so seed n-1 random tracks plus
   // one track with the eaxample product data.
-  const tracks = new Array(numRecords - 1).fill(null).map(() => {
+  const tracks = new Array(numRecords - 1).fill(null).map((val, index) => {
     return db.save({
-      name: randomString(),
-      artist: randomString(),
+      name: index + '',
+      artist: sampleNames[index],
       cdn_url: `http://www.whatever.com/${randomString()}.mp3`,
       tags: randomTags(),
       plays: randomNum(100000),
@@ -22,7 +23,7 @@ const seedRandom = function (numRecords) {
     })
   })
 
-  // Example Product for the entire team
+  // Example product for the entire team
   tracks.push(db.save({
       name: 'Little Bugs',
       artist: 'AmigoKing',
@@ -35,12 +36,12 @@ const seedRandom = function (numRecords) {
 
   Promise.all(tracks).then((results) => {
     const after = new Date();
-    console.log(`Seeded ${results.length} records in ${(after - before)/1000} seconds.`);
+    console.log(`Seeded ${results.length} records in ${(after - before)/1000} seconds.`)
   }).catch((err) => {
-    console.error('Error seeding records: ', err);
+    console.error('Error seeding records: ', err)
   }).finally(() => {
-    process.exit();
+    process.exit()
   })
 }
 
-seedRandom(100);
+seedRandom(100)

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
-mongoose.connect('mongodb://localhost/tracks', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/tracks', { useNewUrlParser: true })
 
 const TrackSchema = new mongoose.Schema({
   name: String,
