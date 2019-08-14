@@ -1,6 +1,6 @@
 # Project Name
 
-> Project description
+> Clone of a Soundcloud track page
 
 ## Related Projects
 
