@@ -28,6 +28,7 @@ const seedRandom = function (numRecords) {
       name: 'Little Bugs',
       artist: 'AmigoKing',
       cdn_url: `http://www.whatever.com/${randomString()}.mp3`,
+      art_url: `http://www.whatever.com/${randomString()}.jpg`
       tags: randomTags(),
       plays: randomNum(100000),
       likes: randomNum(1000),
