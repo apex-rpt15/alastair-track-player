@@ -6,6 +6,7 @@ const TrackSchema = new mongoose.Schema({
   name: String,
   artist: String,
   cdn_url: String,
+  art_url: String,
   tags: [String],
   plays: { type: Number, default: 0},
   likes: { type: Number, default: 0},
@@ -16,7 +17,7 @@ const TrackSchema = new mongoose.Schema({
 const Track = new mongoose.model('Track', TrackSchema)
 
 const save = (track) => new Track(track).save()
-const retrieve = (artist, name) => Track.findOne({ artist, name })
+const retrieve = (artist, name) => Track.findOne({ artist, name }, { '_id': 0, '__v': 0})
 
 module.exports = {
   save,
