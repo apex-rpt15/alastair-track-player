@@ -5,6 +5,7 @@ const db = require('../db/index.js')
 const port = 3001
 const app = express()
 app.use(bodyParser.json())
+app.use(express.static('public'));
 
 app.get('/tracks/:artist/:track', (req, res) => {
   db.retrieve(req.params.artist, req.params.track).then((result) => {
