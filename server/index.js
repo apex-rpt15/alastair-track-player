@@ -1,13 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('../db/index.js')
+const cors = require('cors')
 
 const port = 3001
 const app = express()
 app.use(bodyParser.json())
 app.use(express.static('public'));
 
-app.get('/tracks/:artist/:track', (req, res) => {
+app.get('/tracks/:artist/:track', cors(), (req, res) => {
   db.retrieve(req.params.artist, req.params.track).then((result) => {
     if (!result) {
       throw new Error(`Track "${req.params.track}" by artist "${req.params.artist}" not found in database.`)
