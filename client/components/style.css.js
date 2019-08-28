@@ -33,9 +33,12 @@ const playLink = {
 }
 
 const trackPlayer = {
-  'postion': 'relative',
+  'position': 'relative',
   'height': '380px',
-  'background': '#e5'
+  'width': '1180px',
+  'margin': '0 auto',
+  'background': '#e5',
+  'display': 'block'
 }
 
 const trackArea = {
