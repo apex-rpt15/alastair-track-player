@@ -92,11 +92,11 @@ const artistLabel = {
 }
 
 const trackLabel = {
-  'color': '#ccc',
+  'color': '#fff',
   'fontWeight': '100',
   'backgroundColor': 'rgba(0, 0, 0, .8)',
-  'fontSize': '16px',
-  'lineHeight': '1.2',
+  'fontSize': '24px',
+  'lineHeight': '37px',
   'padding': '2px 7px 3px',
   'fontFamily': 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif'
 }
