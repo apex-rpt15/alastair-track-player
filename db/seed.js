@@ -1,5 +1,5 @@
 const db = require('./index.js')
-const Promise = require('bluebird')
+global.Promise = require('bluebird')
 const { sampleNames } = require('./config.js')
 
 const seedRandom = function (numRecords) {
