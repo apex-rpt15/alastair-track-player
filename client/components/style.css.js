@@ -124,6 +124,8 @@ const trackTag = {
   'borderRadius': '20px',
   'textDecoration': 'none',
   'padding': '2px 7px 3px',
+  'float': 'right',
+  'display': 'inline-block',
   'fontFamily': 'Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif'
 }
 
