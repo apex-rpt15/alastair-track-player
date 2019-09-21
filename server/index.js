@@ -2,11 +2,15 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('../db/index.js')
 const cors = require('cors')
+const staticGzip = require('express-static-gzip')
 
 const port = 3001
 const app = express()
 app.use(bodyParser.json())
-app.use(express.static('public'));
+app.use(staticGzip('public', {
+  enableBrotli: true,
+  orderPreference: ['br']
+}));
 
 app.get('/tracks/:artist/:track', cors(), (req, res) => {
   db.retrieve(req.params.artist, req.params.track).then((result) => {
@@ -17,7 +21,8 @@ app.get('/tracks/:artist/:track', cors(), (req, res) => {
     res.json(result)
   }).catch((err) => {
     res.status(400)
-    res.send(err.message)
+    console.error(err)
+    res.send("Bad Request: " + err.message)
   })
 })
 

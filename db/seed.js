@@ -11,12 +11,12 @@ const seedRandom = function (numRecords) {
 
   // Example product must be included, so seed n-1 random tracks plus
   // one track with the eaxample product data.
-  const tracks = new Array(numRecords - 1).fill(null).map((val, index) => {
+  const tracks = new Array(numRecords).fill(null).map((val, index) => {
     return db.save({
-      name: index + '',
+      name:sampleNames[index] !== 'AmigoKing' ? index + '' : 'Little Bugs',
       artist: sampleNames[index],
-      cdn_url: `http://www.whatever.com/${randomString()}.mp3`,
-      art_url: `http://www.whatever.com/${randomString()}.jpg`,
+      cdn_url: `https://apex15-fec-cdn.s3.us-east-2.amazonaws.com/Little+Bugs.mp3`,
+      art_url: `https://apex15-fec-cdn.s3.us-east-2.amazonaws.com/Amigo+King.jpg`,
       tags: randomTags(),
       plays: randomNum(100000),
       likes: randomNum(1000),
@@ -24,25 +24,15 @@ const seedRandom = function (numRecords) {
     })
   })
 
-  // Example product for the entire team
-  tracks.push(db.save({
-      name: 'Little Bugs',
-      artist: 'AmigoKing',
-      cdn_url: `http://www.whatever.com/${randomString()}.mp3`,
-      art_url: `http://www.whatever.com/${randomString()}.jpg`,
-      tags: randomTags(),
-      plays: randomNum(100000),
-      likes: randomNum(1000),
-      reposts: randomNum(100)
-  }))
-
-  Promise.all(tracks).then((results) => {
-    const after = new Date();
-    console.log(`Seeded ${results.length} records in ${(after - before)/1000} seconds.`)
-  }).catch((err) => {
-    console.error('Error seeding records: ', err)
-  }).finally(() => {
-    process.exit()
+  db.remove({}).then((result) => {
+    Promise.all(tracks).then((results) => {
+      const after = new Date();
+      console.log(`Seeded ${results.length} records in ${(after - before)/1000} seconds.`)
+    }).catch((err) => {
+      console.error('Error seeding records: ', err)
+    }).finally(() => {
+      process.exit()
+    })
   })
 }
 

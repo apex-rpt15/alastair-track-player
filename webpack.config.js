@@ -1,3 +1,6 @@
+const CompressionPlugin = require('compression-webpack-plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
+
 module.exports = {
   entry: __dirname + '/client/components/index.jsx',
   output: {
@@ -5,7 +8,6 @@ module.exports = {
     path: __dirname + '/public'
   },
   module: {
-    
     rules: [
       {
         test: /\.(js|jsx)$/,
@@ -15,5 +17,9 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new CompressionPlugin(), 
+    new BrotliPlugin()
+  ]
 }

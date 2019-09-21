@@ -1,10 +1,39 @@
 import React, { Component } from 'react'
 import styles from './style.css.js'
 import moment from 'moment'
+import Waveform from './waveform.jsx'
 
 export default class TrackPlayer extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      audioSource: null,
+      playing: false
+    }
+
+    this.togglePlay = this.togglePlay.bind(this)
+  }
+
+  togglePlay() {
+    this.state.playing ? this.state.audioSource.pause() : this.state.audioSource.play()
+
+    this.setState({ 'playing': !this.state.playing })
+  }
+
+  onPause() {
+    this.setState({'playing': false})
+  }
+
+  onPlay() {
+    this.setState({'playing': true})
+  }
+
+  componentDidMount() {
+      const audioSource = document.querySelector('#song') || new Audio()
+      audioSource.src = this.props.track.cdn_url
+      audioSource.onPause = this.onPause.bind(this)
+      audioSource.onPlay = this.onPlay.bind(this)
+      this.setState({audioSource})
   }
 
   render() {
@@ -15,7 +44,7 @@ export default class TrackPlayer extends Component {
           <div className="titleArea" style={styles.titleArea}>
             <div className="trackArt" style={styles.trackArt}></div>
             <div className="playButtonDiv" style={styles.playButtonDiv}>
-              <button className="playLink" style={styles.playLink}></button>
+              <button className="playLink" style={this.state.playing ? styles.pauseLink : styles.playLink} onClick={this.togglePlay}></button>
             </div>
             <div className="artistTrackContainer" style={styles.artistTrackContainer}>
               <div className="artistLabelContainer" style={styles.artistLabelContainer}>
@@ -38,9 +67,7 @@ export default class TrackPlayer extends Component {
               <a key={index} href={`/tags/${tag}`} className="trackTag" style={styles.trackTag}>{'#'+tag}</a>)}
           </div>
         </div>
-        <div className="waveformArea">
-
-        </div>
+        <Waveform audioSource={this.state.audioSource} />
       </div>
     )
   }
