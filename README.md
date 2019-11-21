@@ -1,39 +1,10 @@
-# Project Name
+# Front End Capstone
 
-> Clone of a Soundcloud track page
+> Top track player for a clone of a Soundcloud track page.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
-## Requirements
-
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
+  - Comments section: https://github.com/apex-rpt15/ryan-comments
+  - Bottom music player: https://github.com/apex-rpt15/zack-music-player
+  - Reverse proxy: https://github.com/apex-rpt15/zack-proxy
 
